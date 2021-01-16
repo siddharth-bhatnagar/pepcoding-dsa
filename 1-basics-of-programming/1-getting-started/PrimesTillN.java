@@ -2,28 +2,23 @@ import java.util.*;
 
 public class PrimesTillN {
     public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        int low = scn.nextInt();
+        int high = scn.nextInt();
 
-        Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
-
-        for (int i = 1; i <= t; i++) {
-            int n = sc.nextInt();
-            if (n == 1 || n == 0) {
-                System.out.println("not prime");
+        for (int i = low; i <= high; i++) {
+            if (i == 1 || i == 0) {
                 continue;
             }
-
-            int count = 0;
-            for (int j = 2; j * j <= n; j++) {
-                if (n % j == 0) {
-                    count++;
+            boolean flag = true;
+            for (int j = 2; j * j <= i; j++) {
+                if (i % j == 0) {
+                    flag = false;
                     break;
                 }
             }
-            if (count == 1) {
-                System.out.println("not prime");
-            } else {
-                System.out.println("prime");
+            if (flag) {
+                System.out.println(i);
             }
         }
     }
