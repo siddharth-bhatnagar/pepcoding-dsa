@@ -1,39 +1,48 @@
 import java.util.*;
 
-public class Pattern6 {
+public class Main {
 
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
-
         int n = scn.nextInt();
-        int nst = n / 2 + 1;
+        pattern(n);
+    }
+
+    public static void pattern(int n) {
+
+        int nst = (n / 2) + 1;
         int nsp = 1;
 
-        for (int i = 1; i <= n; i++) {
+        for (int i = 1; i <= n; i++) { // loop to control rows
 
-            for (int j = 1; j <= nst; j++) {
-                System.out.print("*	");
+            for (int k = 1; k <= nst; k++) { // controls stars
+                System.out.print("*\t");
             }
 
-            for (int j = 1; j <= nsp; j++) {
-                System.out.print("	");
+            for (int j = 1; j <= nsp; j++) { // controls spaces
+                System.out.print("\t");
             }
 
-            for (int j = 1; j <= nst; j++) {
-                System.out.print("*	");
+            for (int k = 1; k <= nst; k++) { // controls stars
+                System.out.print("*\t");
             }
 
+            // updation of stars and spaces before changing row
             if (i <= n / 2) {
-                nst--;
                 nsp += 2;
+                nst--;
             } else {
-                nst++;
                 nsp -= 2;
+                nst++;
             }
-
+            // changing line in console
             System.out.println();
-
         }
-
     }
 }
+
+// *	*	*		*	*	*	
+// *	*				*	*	
+// *						*	
+// *	*				*	*	
+// *	*	*		*	*	*	
