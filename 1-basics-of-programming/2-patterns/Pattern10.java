@@ -4,40 +4,69 @@ public class Pattern10 {
 
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
-
         int n = scn.nextInt();
-        int nsp1 = 0;
+        pattern(n);
+    }
+
+    public static void pattern(int n) {
+
         int nst = 1;
-        int nsp2 = n - 2;
+        int nsp1 = n / 2;
+        int nsp2 = 1;
 
         for (int i = 1; i <= n; i++) {
 
-            for (int j = 1; j <= nsp1; j++) {
-                System.out.print("	");
+            for (int k = 1; k <= nsp1; k++) {
+                System.out.print("\t");
             }
 
             for (int j = 1; j <= nst; j++) {
-                System.out.print("*	");
+                System.out.print("*\t");
             }
 
-            for (int j = 1; j <= nsp2; j++) {
-                System.out.print("	");
-            }
+            if (i > 1 && i < n) {
 
-            if (i != n / 2 + 1) {
+                for (int k = 1; k <= nsp2; k++) {
+                    System.out.print("\t");
+                }
+
                 for (int j = 1; j <= nst; j++) {
-                    System.out.print("*	");
+                    System.out.print("*\t");
                 }
             }
 
             if (i <= n / 2) {
-                nsp1++;
-                nsp2 -= 2;
-            } else {
                 nsp1--;
-                nsp2 += 2;
+                if (i > 1)
+                    nsp2 += 2;
+            } else {
+                nsp1++;
+                if (i < n)
+                    nsp2 -= 2;
             }
+
             System.out.println();
         }
     }
 }
+
+
+
+//  		*	
+// 	    *		*	
+//  *				*	
+// 	    *		*	
+// 		    *	
+
+
+
+
+
+
+
+
+
+
+
+
+
