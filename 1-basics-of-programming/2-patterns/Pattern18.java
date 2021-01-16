@@ -11,15 +11,15 @@ public class Pattern18 {
         for (int i = 1; i <= n; i++) {
 
             for (int j = 1; j <= nsp; j++) {
-                System.out.print("	");
+                System.out.print("\t");
             }
 
             for (int j = 1; j <= nst; j++) {
 
                 if (i > 1 && i <= n / 2 && j > 1 && j < nst) {
-                    System.out.print("	");
+                    System.out.print("\t");
                 } else {
-                    System.out.print("*	");
+                    System.out.print("*\t");
                 }
             }
 
@@ -35,3 +35,12 @@ public class Pattern18 {
         }
     }
 }
+
+// *    *	*	*	*	*	*	
+// 	    *				*	
+// 		    *		*	
+// 			    *	
+// 		    *	*	*	
+//  	*	*	*	*	*	
+// *	*	*	*	*	*	*	
+
