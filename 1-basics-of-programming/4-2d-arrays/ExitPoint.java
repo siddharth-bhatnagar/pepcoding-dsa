@@ -1,26 +1,21 @@
 import java.io.*;
 import java.util.*;
 
-public class ExitPoint {
-    public static Scanner scn = new Scanner(System.in);
+public class Main {
 
-    // This is a functional problem.
-    // Input is managed for you.
-    // Don't change main, write your code in the function below
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        Scanner scn = new Scanner(System.in);
         int r = scn.nextInt();
         int c = scn.nextInt();
-        int[][] arr = new int[r][c];
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[0].length; j++) {
+        int arr[][] = new int[r][c];
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
                 arr[i][j] = scn.nextInt();
             }
-
         }
-        exitPoint(arr);
-    }
 
-    public static void exitPoint(int[][] arr) {
+
+
         int dir = 0; // 0-east ,1-south ,2-west ,3-north
         int i = 0, j = 0;
 
@@ -35,8 +30,24 @@ public class ExitPoint {
             } else {
                 i--;
             }
+
+
+            if (i < 0) {
+                i++;
+                break;
+            } else if (j < 0) {
+                j++;
+                break;
+            } else if (i == arr.length) {
+                i--;
+                break;
+            } else if (j == arr[0].length) {
+                j--;
+                break;
+            }
         }
 
-        System.out.println(i + ", " + j);
+        System.out.println(i + "\n" + j);
     }
+
 }
