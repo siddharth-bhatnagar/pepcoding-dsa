@@ -44,3 +44,56 @@ public class NGEonRight {
     }
 
 }
+
+
+// Next smallest element on right
+
+// public static int[] solve(int[] arr) {
+//     int nge[] = new int[arr.length];
+    
+//     Stack <Integer> stack = new Stack<>();
+//     Arrays.fill(nge, -1);
+//     for(int i = 0;i<arr.length;i++){
+//         while(stack.size()!=0 && arr[i]<arr[stack.peek()]){
+//             int solvedidx = stack.pop();
+//             nge[solvedidx] = arr[i];
+//         }
+//         stack.push(i);
+//     }
+//     return nge;
+// }
+
+// next greatest on left
+
+// public static int[] solve(int[] arr) {
+//     int nge[] = new int[arr.length];
+    
+//     Stack <Integer> stack = new Stack<>();
+//     Arrays.fill(nge, -1);
+//     for(int i = arr.length-1;i>=0;i--){
+//         while(stack.size()!=0 && arr[i]>arr[stack.peek()]){
+//             int solvedidx = stack.pop();
+//             nge[solvedidx] = arr[i];
+//         }
+//         stack.push(i);
+//     }
+//     return nge;
+// }
+
+
+// next smallest on left
+
+// public static int[] solve(int[] arr) {
+//     int nge[] = new int[arr.length];
+    
+//     Stack <Integer> stack = new Stack<>();
+//     Arrays.fill(nge, -1);
+//     for(int i = arr.length-1;i>=0;i--){
+//         while(stack.size()!=0 && arr[i]<arr[stack.peek()]){
+//             int solvedidx = stack.pop();
+//             nge[solvedidx] = arr[i];
+//         }
+//         stack.push(i);
+//     }
+//     return nge;
+// }
