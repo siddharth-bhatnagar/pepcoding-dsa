@@ -19,7 +19,7 @@ public class PallindromicSubstring {
             }
         }
     }
-
+    // This can also be achieved using StringBuilder class and using it's reverse() method.    
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
         String str = scn.next();
