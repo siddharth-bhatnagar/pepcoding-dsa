@@ -58,3 +58,17 @@ public class BalancedBrackets {
         }
     }
 }
+
+
+/*
+
+Approach
+
+if any of the opening brackets are encountered, push them into the stack.
+if any of the closing brackets are encountered, peek at the stack and see if matching 
+opening bracket is at top, if yes then pop the element else return false. if any other 
+character, simply continue and move on to the next character till bracket is found.
+At last, check if the stack is empty, if yes print true else return false
+
+
+**/
