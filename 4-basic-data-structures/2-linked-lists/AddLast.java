@@ -13,12 +13,13 @@ public class AddLast {
         int size;
 
         void addLast(int val) {
+            // Write your code here
             Node temp = new Node();
             temp.data = val;
-            if (size == 0) {
+            if(size==0){
                 head = temp;
                 tail = temp;
-            } else {
+            }else{
                 tail.next = temp;
                 tail = temp;
             }
@@ -36,7 +37,6 @@ public class AddLast {
             System.out.println(list.tail.data);
         }
     }
-
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         LinkedList list = new LinkedList();

@@ -33,10 +33,10 @@ public class DisplayLinkedList {
 
         public void display() {
             // Method 1:
-            /* for(Node i = head;i!=null;i=i.next){
-                System.out.print(i.data + " ");
-            }
-            System.out.println(); */
+            /*
+             * for(Node i = head;i!=null;i=i.next){ System.out.print(i.data + " "); }
+             * System.out.println();
+             */
 
             // Method 2
             Node temp = head;

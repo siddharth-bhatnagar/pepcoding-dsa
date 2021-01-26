@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class GetValue {
+public class AddAtIndex {
     public static class Node {
         int data;
         Node next;
@@ -54,32 +54,76 @@ public class GetValue {
             if (size == 0) {
                 System.out.println("List is empty");
                 return -1;
+            } else {
+                return head.data;
             }
-            return head.data;
         }
 
         public int getLast() {
             if (size == 0) {
                 System.out.println("List is empty");
                 return -1;
+            } else {
+                return tail.data;
             }
-            return tail.data;
         }
 
         public int getAt(int idx) {
             if (size == 0) {
                 System.out.println("List is empty");
                 return -1;
-            }
-            if (idx < 0 || idx >= size) {
+            } else if (idx < 0 || idx >= size) {
                 System.out.println("Invalid arguments");
                 return -1;
+            } else {
+                Node temp = head;
+                for (int i = 0; i < idx; i++) {
+                    temp = temp.next;
+                }
+                return temp.data;
             }
-            Node temp = head;
-            for (int i = 0; i < idx; i++) {
-                temp = temp.next;
+        }
+
+        public void addFirst(int val) {
+            Node temp = new Node();
+            temp.data = val;
+            temp.next = head;
+            head = temp;
+
+            if (size == 0) {
+                tail = temp;
             }
-            return temp.data;
+
+            size++;
+        }
+
+        public void addAt(int idx, int val) {
+            // write your code here
+            if (idx == 0) {
+                addFirst(val);
+                return;
+            }
+            if (idx == size) {
+                addLast(val);
+                return;
+            }
+            if (idx < 0 || idx > size) {
+                System.out.println("Invalid arguments");
+            } else {
+                Node temp = new Node();
+                temp.data = val;
+                Node atIndex = head;
+                Node beforeIndex = head;
+                for (int i = 0; i < idx; i++) {
+                    atIndex = atIndex.next;
+                }
+                for (int i = 0; i < idx - 1; i++) {
+                    beforeIndex = beforeIndex.next;
+                }
+                temp.next = atIndex;
+                beforeIndex.next = temp;
+                size++;
+            }
         }
     }
 
@@ -114,6 +158,13 @@ public class GetValue {
                 if (val != -1) {
                     System.out.println(val);
                 }
+            } else if (str.startsWith("addFirst")) {
+                int val = Integer.parseInt(str.split(" ")[1]);
+                list.addFirst(val);
+            } else if (str.startsWith("addAt")) {
+                int idx = Integer.parseInt(str.split(" ")[1]);
+                int val = Integer.parseInt(str.split(" ")[2]);
+                list.addAt(idx, val);
             }
             str = br.readLine();
         }
