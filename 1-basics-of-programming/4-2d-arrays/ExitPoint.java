@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class ExitPoint {
 
     public static void main(String[] args) throws Exception {
         Scanner scn = new Scanner(System.in);
@@ -13,8 +13,6 @@ public class Main {
                 arr[i][j] = scn.nextInt();
             }
         }
-
-
 
         int dir = 0; // 0-east ,1-south ,2-west ,3-north
         int i = 0, j = 0;
@@ -30,7 +28,6 @@ public class Main {
             } else {
                 i--;
             }
-
 
             if (i < 0) {
                 i++;
