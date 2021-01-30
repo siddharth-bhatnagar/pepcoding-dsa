@@ -51,12 +51,12 @@ public class NSEonRight {
 
     *******************Approach*****************
 
-    To reduce the complexity of the program, we'll push indices array in the stack.
+    To reduce the complexity of the program, we'll push indices of array in the stack.
     if the stack is empty, we'll push index of the element in stack. if the stack is not empty,
-    and the element at current array element is greater than the element at the index present on top of stack,
+    and current array element is greater than the element at the index present on top of stack,
     we will place that value in the ans array and pop the stack till the current value of element in array becomes 
     less than the value of element pointed by index at top of stack or the size of stack becomes zero. Then we'll push the current 
-    index in stack. Those indices whose NGe on right could not be found will point to -1 in the ans array.
+    index in stack. Those indices whose NGE on right could not be found will point to -1 in the ans array.
 
 
     This approach can also be modified to find NGE on left as well as NSE on right or left. The time complexity of this algorithm appears to be O(n^2) due to nested loops but is actually O(2n) or simply O(n) in the worst case because the inner loop does not run every time.
