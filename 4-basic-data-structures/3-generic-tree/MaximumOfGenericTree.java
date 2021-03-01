@@ -56,15 +56,16 @@ public class MaximumOfGenericTree {
     }
 
     public static int max(Node node) {
-        if (node.children.size() == 0) {
-            return node.data;
-        }
         int max = Integer.MIN_VALUE;
-        for (Node child : node.children) {
-            int temp = max(child);
-            max = Math.max(max, temp);
+        for(Node child: node.children){
+            int t = max(child);
+            if(max<t){
+                max = t;
+            }
         }
-        max = Math.max(max, node.data);
+        if(max<node.data){
+            max = node.data;
+        }
         return max;
     }
 
