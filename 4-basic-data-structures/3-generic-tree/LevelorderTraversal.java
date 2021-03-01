@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class LevelOrderTraversal {
   private static class Node {
     int data;
     ArrayList<Node> children = new ArrayList<>();
