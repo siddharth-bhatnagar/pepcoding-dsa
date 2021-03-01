@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class HeightGenericTree {
+public class Main {
   private static class Node {
     int data;
     ArrayList<Node> children = new ArrayList<>();
@@ -68,15 +68,26 @@ public class HeightGenericTree {
   }
 
   public static int height(Node node) {
-    // Initialize h with -1 if height is asked in terms of edges
-    // Initialize h wth 0 if height is asked in terms of nodes
-    int ht = -1;
-    for(Node child: node.children){
-      int th = height(child);
-      ht = Math.max(ht, th);
+    int h = -1;
+
+    for (Node child : node.children) {
+      int ch = height(child);
+      h = Math.max(h, ch);
     }
-    ht++;
-    return ht;
+    h += 1;
+
+    return h;
+  }
+
+  public static void traversals(Node node){
+    // write your code here
+    System.out.println("Node Pre " + node.data);
+    for(Node child: node.children){
+        System.out.println("Edge Pre " + node.data + "--" + child.data);
+        traversals(child);
+        System.out.println("Edge Post " + node.data + "--" + child.data);
+    }
+    System.out.println("Node Post " + node.data);
   }
 
   public static void main(String[] args) throws Exception {
@@ -89,8 +100,7 @@ public class HeightGenericTree {
     }
 
     Node root = construct(arr);
-    int h = height(root);
-    System.out.println(h);
-    // display(root);
+    traversals(root);
   }
+
 }
