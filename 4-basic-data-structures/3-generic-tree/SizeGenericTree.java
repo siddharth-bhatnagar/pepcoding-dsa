@@ -45,12 +45,8 @@ public class SizeGenericTree {
     }
 
     public static int size(Node node) {
-        if (node.children.size() == 0) {
-            return 1;
-        }
-
         int count = 0;
-        for (Node child : node.children) {
+        for(Node child: node.children){
             int temp = size(child);
             count += temp;
         }
