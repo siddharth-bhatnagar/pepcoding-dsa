@@ -14,10 +14,6 @@ public class BinaryTreeConstructionAndDisplay {
             this.left = left;
             this.right = right;
         }
-
-        public Node() {
-
-        }
     }
 
     // Creating Pair class
@@ -28,10 +24,6 @@ public class BinaryTreeConstructionAndDisplay {
         public Pair(Node node, int state) {
             this.node = node;
             this.state = state;
-        }
-
-        public Pair() {
-
         }
     }
 
