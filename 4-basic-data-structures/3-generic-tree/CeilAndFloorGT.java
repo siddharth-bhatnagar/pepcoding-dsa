@@ -44,8 +44,8 @@ public class CeilAndFloorGT {
         return root;
     }
 
-    static int ceil = Integer.MIN_VALUE;
-    static int floor = Integer.MAX_VALUE;
+    static int ceil;
+    static int floor;
 
     public static void ceilAndFloor(Node node, int data) {
         // Write your code here
@@ -54,12 +54,12 @@ public class CeilAndFloorGT {
             if (node.data < ceil) {
                 ceil = node.data;
             }
-        } else if (node.data < data) {
+        }
+
+        if (node.data < data) {
             if (node.data > floor) {
                 floor = node.data;
             }
-        } else {
-            ;
         }
 
         for (Node child : node.children) {
