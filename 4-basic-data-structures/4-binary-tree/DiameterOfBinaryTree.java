@@ -90,7 +90,8 @@ public class DiameterOfBinaryTree {
         int th = Math.max(lh, rh) + 1;
         return th;
     }
-    // diameter - longest path possible making a node as a pivot.
+    // diameter - No. of edges/nodes between two farthest nodes in the given tree.
+    // Complexity of this algorithm is O(n).
     static int dia;
     public static int diameter(Node node) {
         // write your code here
