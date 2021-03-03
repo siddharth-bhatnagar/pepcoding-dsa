@@ -40,6 +40,35 @@ public class LevelOrderLineWise {
 
     }
 
+    public static ArrayList<ArrayList<Integer>> levelOrderTraversalLinewie(TreeNode node) {
+        // write your code here.
+        Queue <TreeNode> mq = new ArrayDeque<>();
+        Queue <TreeNode> cq = new ArrayDeque<>();
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        ArrayList<Integer> temp = new ArrayList<>();
+        mq.add(node);
+        while(mq.size()>0){
+            node = mq.remove();
+            temp.add(node.val);
+            
+            if(node.left!=null){
+              cq.add(node.left);    
+            }
+            
+            if(node.right!=null){
+                cq.add(node.right);
+            }
+            
+            if(mq.size()==0){
+                mq = cq;
+                cq = new ArrayDeque<>();
+                ans.add(temp);
+                temp = new ArrayList<>();
+            }
+        }
+        return ans;
+  }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
