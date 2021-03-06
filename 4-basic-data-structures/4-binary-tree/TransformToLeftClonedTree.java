@@ -84,10 +84,14 @@ public class TransformToLeftClonedTree {
         if (node == null) {
             return null;
         }
-        Node t = new Node(node.data, node.left, null);
-        node.left = t;
-        t.left = createLeftCloneTree(t.left);
-        node.right = createLeftCloneTree(node.right);
+        
+        Node ln = createLeftCloneTree(node.left);
+        Node rn = createLeftCloneTree(node.right);
+        
+        Node nn = new Node(node.data, ln, null);
+        node.left = nn;
+        node.right = rn;
+        
         return node;
     }
 
