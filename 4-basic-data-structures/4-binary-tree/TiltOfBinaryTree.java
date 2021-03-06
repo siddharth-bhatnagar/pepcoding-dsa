@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class LCAInBST {
+public class TiltOfBinaryTree {
     public static class Node {
         int data;
         Node left;
@@ -79,20 +79,23 @@ public class LCAInBST {
         display(node.right);
     }
 
-    public static int lca(Node node, int d1, int d2) {
-        // write your code here
-        if(node.data > d1 && node.data > d2){
-            int temp = lca(node.left, d1, d2);
-            return temp;
-        }
-        else if(node.data < d1 && node.data < d2){
-            int temp = lca(node.right, d1, d2);
-            return temp;
-        }
-        else{
-            return node.data
+    public static int height(Node node) {
+        if (node == null) {
+            return -1;
         }
 
+        int lh = height(node.left);
+        int rh = height(node.right);
+
+        int th = Math.max(lh, rh) + 1;
+        return th;
+    }
+
+    static int tilt = 0;
+
+    public static int tilt(Node node) {
+        // write your code here to set the tilt data member
+        
     }
 
     public static void main(String[] args) throws Exception {
@@ -108,12 +111,10 @@ public class LCAInBST {
             }
         }
 
-        int d1 = Integer.parseInt(br.readLine());
-        int d2 = Integer.parseInt(br.readLine());
-
         Node root = construct(arr);
-        int lca = lca(root, d1, d2);
-        System.out.println(lca);
+
+        tilt(root);
+        System.out.println(tilt);
     }
 
 }
