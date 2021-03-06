@@ -90,7 +90,7 @@ public class LCAInBST {
             return temp;
         }
         else{
-            return node.data
+            return node.data;
         }
 
     }
