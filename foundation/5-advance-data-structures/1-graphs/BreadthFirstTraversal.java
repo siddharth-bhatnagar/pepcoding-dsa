@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class BreadthFirstTraversal {
     static class Edge {
         int src;
         int nbr;

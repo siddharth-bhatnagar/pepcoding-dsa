@@ -92,7 +92,7 @@ public class TiltOfBinaryTree {
     }
 
     
-    static int tilt = 0;
+    static int tilt;
     public static int tilt(Node node) {
         // write your code here to set the tilt data member
         if(node == null){
@@ -123,7 +123,7 @@ public class TiltOfBinaryTree {
         }
 
         Node root = construct(arr);
-
+        tilt = 0;
         tilt(root);
         System.out.println(tilt);
     }
