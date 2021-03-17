@@ -1,7 +1,8 @@
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
 public class LongestConsecutiveSequence {
-    public static void Main(String[] args) {
+    public static void main(String[] args) {
 
         Scanner scn = new Scanner(System.in);
         int[] nums = new int[scn.nextInt()];
