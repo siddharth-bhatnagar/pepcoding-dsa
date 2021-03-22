@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class WritePQUsingHeap {
 
     public static class PriorityQueue {
         ArrayList<Integer> data;
