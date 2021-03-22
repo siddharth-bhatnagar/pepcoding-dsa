@@ -98,7 +98,6 @@ public class Multisolver {
                 pq.remove();
                 pq.add(new Pair(wsf, psf));
             }
-
             return;
         }
 
