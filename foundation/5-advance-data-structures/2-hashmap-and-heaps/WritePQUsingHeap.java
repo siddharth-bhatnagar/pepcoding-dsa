@@ -10,33 +10,65 @@ public class Main {
             data = new ArrayList<>();
         }
 
-        public void add(int val) {
-            // write your code here
-            data.add(val);
-            upheapify(data.size() - 1);
+        public void swap(int idx1, int idx2) {
+            int idx1elem = data.get(idx1);
+            int idx2elem = data.get(idx2);
+
+            data.set(idx1, idx2elem);
+            data.set(idx2, idx1elem);
         }
 
         public void upheapify(int idx) {
-
             if (idx == 0) {
                 return;
             }
 
             int pidx = (idx - 1) / 2;
             if (data.get(idx) < data.get(pidx)) {
-                int idxelem = data.get(idx);
-                int pidxelem = data.get(pidx);
-
-                data.set(idx, pidxelem);
-                data.set(pidx, idxelem);
-
+                swap(idx, pidx);
                 upheapify(pidx);
             }
         }
 
+        public void downheapify(int idx) {
+            int minidx = idx;
+
+            int lidx = 2 * idx + 1;
+            int ridx = 2 * idx + 2;
+
+            if (lidx < data.size() && data.get(lidx) < data.get(minidx)) {
+                minidx = lidx;
+            }
+
+            if (ridx < data.size() && data.get(ridx) < data.get(minidx)) {
+                minidx = ridx;
+            }
+
+            if (minidx == idx) {
+
+            } else {
+                swap(idx, minidx);
+                downheapify(minidx);
+            }
+        }
+
+        public void add(int val) {
+            // write your code here
+            data.add(val);
+            upheapify(data.size() - 1);
+        }
+
         public int remove() {
             // write your code here
+            if (data.size() == 0) {
+                System.out.println("Underflow");
+                return -1;
+            }
 
+            swap(0, data.size() - 1);
+            int ans = data.remove(data.size() - 1);
+            downheapify(0);
+            return ans;
         }
 
         public int peek() {
@@ -45,6 +77,7 @@ public class Main {
                 System.out.println("Underflow");
                 return -1;
             }
+
             return data.get(0);
         }
 
