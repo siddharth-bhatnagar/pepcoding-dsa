@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class isGraphCyclic {
     static class Edge {
         int src;
         int nbr;
@@ -34,5 +34,35 @@ public class Main {
         }
 
         // write your code here
+        boolean[] vis = new boolean[vtces];
+        for(int v = 0;v<vtces;v++) {
+            if(vis[v] == false) {
+                boolean cycle = isCyclic(graph, v, vis);
+                if(cycle){
+                    System.out.println(true);
+                    return;
+                }
+            }
+        }
+        System.out.println(false);
+    }
+
+    public static boolean isCyclic(ArrayList<Edge>[] graph, int src, boolean[] vis) {
+        Queue<Integer> q = new ArrayDeque<>();
+        q.add(src); 
+        while(q.size()>0){
+            int rem = q.remove();
+            if(vis[rem] == true) {
+                return true;
+            }
+
+            vis[rem] = true;
+            for(Edge e: graph[rem]) {
+                if(vis[e.nbr] == false) {
+                    q.add(e.nbr);
+                }
+            }
+        }
+        return false;
     }
 }
