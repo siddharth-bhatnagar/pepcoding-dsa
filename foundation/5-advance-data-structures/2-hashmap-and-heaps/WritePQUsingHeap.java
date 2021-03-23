@@ -3,89 +3,89 @@ import java.util.*;
 
 public class WritePQUsingHeap {
 
-    // public static class PriorityQueue {
-    //     ArrayList<Integer> data;
+    public static class PriorityQueue {
+        ArrayList<Integer> data;
 
-    //     public PriorityQueue() {
-    //         data = new ArrayList<>();
-    //     }
+        public PriorityQueue() {
+            data = new ArrayList<>();
+        }
 
-    //     public void swap(int idx1, int idx2) {
-    //         int idx1elem = data.get(idx1);
-    //         int idx2elem = data.get(idx2);
+        public void swap(int idx1, int idx2) {
+            int idx1elem = data.get(idx1);
+            int idx2elem = data.get(idx2);
 
-    //         data.set(idx1, idx2elem);
-    //         data.set(idx2, idx1elem);
-    //     }
+            data.set(idx1, idx2elem);
+            data.set(idx2, idx1elem);
+        }
 
-    //     public void upheapify(int idx) {
-    //         if (idx == 0) {
-    //             return;
-    //         }
+        public void upheapify(int idx) {
+            if (idx == 0) {
+                return;
+            }
 
-    //         int pidx = (idx - 1) / 2;
-    //         if (data.get(idx) < data.get(pidx)) {
-    //             swap(idx, pidx);
-    //             upheapify(pidx);
-    //         }
-    //     }
+            int pidx = (idx - 1) / 2;
+            if (data.get(idx) < data.get(pidx)) {
+                swap(idx, pidx);
+                upheapify(pidx);
+            }
+        }
 
-    //     public void downheapify(int idx) {
-    //         int minidx = idx;
+        public void downheapify(int idx) {
+            int minidx = idx;
 
-    //         int lidx = 2 * idx + 1;
-    //         int ridx = 2 * idx + 2;
+            int lidx = 2 * idx + 1;
+            int ridx = 2 * idx + 2;
 
-    //         if (lidx < data.size() && data.get(lidx) < data.get(minidx)) {
-    //             minidx = lidx;
-    //         }
+            if (lidx < data.size() && data.get(lidx) < data.get(minidx)) {
+                minidx = lidx;
+            }
 
-    //         if (ridx < data.size() && data.get(ridx) < data.get(minidx)) {
-    //             minidx = ridx;
-    //         }
+            if (ridx < data.size() && data.get(ridx) < data.get(minidx)) {
+                minidx = ridx;
+            }
 
-    //         if (minidx == idx) {
+            if (minidx == idx) {
 
-    //         } else {
-    //             swap(idx, minidx);
-    //             downheapify(minidx);
-    //         }
-    //     }
+            } else {
+                swap(idx, minidx);
+                downheapify(minidx);
+            }
+        }
 
-    //     public void add(int val) {
-    //         // write your code here
-    //         data.add(val);
-    //         upheapify(data.size() - 1);
-    //     }
+        public void add(int val) {
+            // write your code here
+            data.add(val);
+            upheapify(data.size() - 1);
+        }
 
-    //     public int remove() {
-    //         // write your code here
-    //         if (data.size() == 0) {
-    //             System.out.println("Underflow");
-    //             return -1;
-    //         }
+        public int remove() {
+            // write your code here
+            if (data.size() == 0) {
+                System.out.println("Underflow");
+                return -1;
+            }
 
-    //         swap(0, data.size() - 1);
-    //         int ans = data.remove(data.size() - 1);
-    //         downheapify(0);
-    //         return ans;
-    //     }
+            swap(0, data.size() - 1);
+            int ans = data.remove(data.size() - 1);
+            downheapify(0);
+            return ans;
+        }
 
-    //     public int peek() {
-    //         // write your code here
-    //         if (data.size() == 0) {
-    //             System.out.println("Underflow");
-    //             return -1;
-    //         }
+        public int peek() {
+            // write your code here
+            if (data.size() == 0) {
+                System.out.println("Underflow");
+                return -1;
+            }
 
-    //         return data.get(0);
-    //     }
+            return data.get(0);
+        }
 
-    //     public int size() {
-    //         // write your code here
-    //         return data.size();
-    //     }
-    // }
+        public int size() {
+            // write your code here
+            return data.size();
+        }
+    }
     
     public static class Pair implements Comparable<Pair> {
         int val;
@@ -103,89 +103,89 @@ public class WritePQUsingHeap {
         } 
     }
 
-    public static class PriorityQueue {
-        ArrayList<Pair> data;
+    // public static class PriorityQueue {
+    //     ArrayList<Pair> data;
 
-        public PriorityQueue() {
-            data = new ArrayList<>();
-        }
+    //     public PriorityQueue() {
+    //         data = new ArrayList<>();
+    //     }
 
-        public void swap(int idx1, int idx2) {
-            Pair idx1elem = data.get(idx1);
-            Pair idx2elem = data.get(idx2);
+    //     public void swap(int idx1, int idx2) {
+    //         Pair idx1elem = data.get(idx1);
+    //         Pair idx2elem = data.get(idx2);
 
-            data.set(idx1, idx2elem);
-            data.set(idx2, idx1elem);
-        }
+    //         data.set(idx1, idx2elem);
+    //         data.set(idx2, idx1elem);
+    //     }
 
-        public void upheapify(int idx) {
-            if (idx == 0) {
-                return;
-            }
+    //     public void upheapify(int idx) {
+    //         if (idx == 0) {
+    //             return;
+    //         }
 
-            int pidx = (idx - 1) / 2;
-            if (data.get(idx).compareTo(data.get(pidx)) < 0) {
-                swap(idx, pidx);
-                upheapify(pidx);
-            }
-        }
+    //         int pidx = (idx - 1) / 2;
+    //         if (data.get(idx).compareTo(data.get(pidx)) < 0) {
+    //             swap(idx, pidx);
+    //             upheapify(pidx);
+    //         }
+    //     }
 
-        public void downheapify(int idx) {
-            int minidx = idx;
+    //     public void downheapify(int idx) {
+    //         int minidx = idx;
 
-            int lidx = 2 * idx + 1;
-            int ridx = 2 * idx + 2;
+    //         int lidx = 2 * idx + 1;
+    //         int ridx = 2 * idx + 2;
 
-            if (lidx < data.size() && data.get(lidx).compareTo(data.get(minidx)) < 0) {
-                minidx = lidx;
-            }
+    //         if (lidx < data.size() && data.get(lidx).compareTo(data.get(minidx)) < 0) {
+    //             minidx = lidx;
+    //         }
 
-            if (ridx < data.size() && data.get(ridx).compareTo(data.get(minidx)) < 0) {
-                minidx = ridx;
-            }
+    //         if (ridx < data.size() && data.get(ridx).compareTo(data.get(minidx)) < 0) {
+    //             minidx = ridx;
+    //         }
 
-            if (minidx == idx) {
+    //         if (minidx == idx) {
 
-            } else {
-                swap(idx, minidx);
-                downheapify(minidx);
-            }
-        }
+    //         } else {
+    //             swap(idx, minidx);
+    //             downheapify(minidx);
+    //         }
+    //     }
 
-        public void add(Pair val) {
-            // write your code here
-            data.add(val);
-            upheapify(data.size() - 1);
-        }
+    //     public void add(Pair val) {
+    //         // write your code here
+    //         data.add(val);
+    //         upheapify(data.size() - 1);
+    //     }
 
-        public Pair remove() {
-            // write your code here
-            if (data.size() == 0) {
-                System.out.println("Underflow");
-                return null;
-            }
+    //     public Pair remove() {
+    //         // write your code here
+    //         if (data.size() == 0) {
+    //             System.out.println("Underflow");
+    //             return null;
+    //         }
 
-            swap(0, data.size() - 1);
-            Pair ans = data.remove(data.size() - 1);
-            downheapify(0);
-            return ans;
-        }
+    //         swap(0, data.size() - 1);
+    //         Pair ans = data.remove(data.size() - 1);
+    //         downheapify(0);
+    //         return ans;
+    //     }
 
-        public Pair peek() {
-            // write your code here
-            if (data.size() == 0) {
-                System.out.println("Underflow");
-                return null;
-            }
+    //     public Pair peek() {
+    //         // write your code here
+    //         if (data.size() == 0) {
+    //             System.out.println("Underflow");
+    //             return null;
+    //         }
 
-            return data.get(0);
-        }
+    //         return data.get(0);
+    //     }
 
-        public int size() {
-            // write your code here
-            return data.size();
-        }
-    }
+    //     public int size() {
+    //         // write your code here
+    //         return data.size();
+    //     }
+    // }
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
