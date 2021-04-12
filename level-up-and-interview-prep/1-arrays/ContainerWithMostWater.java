@@ -7,13 +7,14 @@ class Solution {
 
         while (i < j) {
             int storage = (j - i) * Math.min(height[i], height[j]);
-            if (storage > omax)
-                omax = storage;
 
-            if (height[i] < height[j])
+            omax = Math.max(storage, omax);
+
+            if (height[i] < height[j]) {
                 i++;
-            else
+            } else {
                 j--;
+            }
         }
         return omax;
     }

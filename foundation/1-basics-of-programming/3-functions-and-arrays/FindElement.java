@@ -23,6 +23,7 @@ public class FindElement {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == d) {
                 idx = i;
+                break;
             }
         }
         return idx;
