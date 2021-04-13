@@ -1,4 +1,6 @@
 // leetcode 169
+
+// Boyer Moore Voting Algorithm
 class Solution {
     public int majorityElement(int[] arr) {
         int val = arr[0];
