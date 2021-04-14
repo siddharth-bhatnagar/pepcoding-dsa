@@ -1,11 +1,3 @@
-
-// Leetcode 925
-class Solution {
-    public boolean isLongPressedName(String name, String typed) {
-
-    }
-}
-
 // leetcode 925
 class Solution {
     public boolean isLongPressedName(String name, String typed) {
