@@ -5,7 +5,7 @@ class Solution {
         char[] digits = (num + "").toCharArray();
         int n = digits.length;
         int[] suffixmax = new int[n];
-        suffixmax[n-1] = (int)digits[n-1];
+        suffixmax[n-1] = digits[n-1] - '0';
         for(int i=n-2;i>=0;i--) {
             suffixmax[i] = Math.max(suffixmax[i+1], digits[i]);
         }
