@@ -2,6 +2,7 @@
 // Minimum moves to equal array elements two
 
 // Strategy, all array elements should become equal to the median
+// O(nlogn)
 
 class Solution {
     public int minMoves2(int[] nums) {
@@ -16,3 +17,5 @@ class Solution {
         return moves;
     }
 }
+
+// Median can be found using quick select in O(n) time in avg case 

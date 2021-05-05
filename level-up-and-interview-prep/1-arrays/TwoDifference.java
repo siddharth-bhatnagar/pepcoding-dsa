@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 // O(nlogn) solution
 
 class Solution {
@@ -19,3 +21,19 @@ class Solution {
         return false;
     }
 }
+
+// Using Hashmap in O(n) time but with O(n) space
+
+// HashMap<Integer, Integer> map = new HashMap<>();
+// for(int i=0;i<arr.length;i++) {
+//     int num = arr[i];
+//     int comp = n + num;
+
+//     if(map.containsKey(comp)) {
+//         return true;
+//     }
+
+//     map.put(num, i);
+// }
+
+// return false;
