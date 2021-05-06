@@ -5,6 +5,21 @@ class Solution {
     public int reachNumber(int target) {
         target = Math.abs(target);
         int moves = 0;
+        int sum = 0;
+        while(sum < target || (sum - target)%2!=0){
+            target -= ++moves;
+        }
+        return moves;
+    }
+}
+
+// The code below is same but longer
+
+/**
+ class Solution {
+    public int reachNumber(int target) {
+        target = Math.abs(target);
+        int moves = 0;
         int i = 1;
         int val = 0;
         while (true) {
@@ -28,3 +43,5 @@ class Solution {
         return moves;
     }
 }
+
+*/
