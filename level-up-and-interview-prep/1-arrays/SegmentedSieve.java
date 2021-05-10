@@ -64,3 +64,33 @@ class Main {
         return ans;
     }
 }
+
+
+private static ArrayList<Integer> segmentedSieve(int s, int e) {
+    int len = (int) (Math.sqrt(e) + 1);
+    ArrayList<Integer> primes = sieveOfEratosthenes(len);
+    boolean[] arr2 = new boolean[e - s + 1];
+    if (s == 1) {
+        arr2[0] = true;
+    }
+    ArrayList<Integer> res = new ArrayList<>();
+    for (int p : primes) {
+
+        int st = (int) (p * (Math.ceil((double) s / p)));
+        if (st < s) {
+            st += p;
+        }
+        if (st == p) {
+            st += p;
+        }
+        for (int i = st; i <= e; i += p) {
+            arr2[i - s] = true;
+        }
+    }
+    for (int i = 0; i < arr2.length; i++) {
+        if (!arr2[i]) {
+            res.add(i + s);
+        }
+    }
+    return res;
+}

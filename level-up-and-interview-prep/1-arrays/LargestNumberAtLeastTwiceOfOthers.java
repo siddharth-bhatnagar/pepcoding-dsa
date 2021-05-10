@@ -22,3 +22,5 @@ class Solution {
         }
     }
 }
+
+// Intuition: if the array was sorted, find largest and second largest check the condition
