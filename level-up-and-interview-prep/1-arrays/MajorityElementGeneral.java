@@ -38,7 +38,7 @@ public class MajorityElementGeneral {
         // Finding Potential Candidates
         for (int i = 0; i < arr.length; i++) {
             int candidate = arr[i];
-            int j;
+           nt j; i
             // traversing through temp
             for (j = 0; j < temp.length; j++) {
                 if (candidate == temp[j].e) {
