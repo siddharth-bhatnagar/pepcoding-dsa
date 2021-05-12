@@ -1,96 +1,66 @@
-
-// Spoj problem: Segmented Sieve
+import java.io.*;
 import java.util.*;
-import java.lang.*;
 
-class Main {
-    public static void main(String[] args) throws java.lang.Exception {
+public class Main {
+    public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
         int t = scn.nextInt();
-        while (t-- > 0) {
-            int m = scn.nextInt();
-            int n = scn.nextInt();
-
-            ArrayList<Integer> primes = sieve((int) Math.pow(n, 0.5));
-            // System.out.print(primes);
-            ArrayList<Integer> ans = segmentedSieve(primes, m, n);
-            for (int val : ans) {
-                System.out.println(val);
+        
+        while(t-- > 0) {
+            int L = scn.nextInt();
+            int R = scn.nextInt();
+            ArrayList<Integer> primes = segmentedSieve(L, R);
+            for(int i=0;i<primes.size();i++) {
+                System.out.println(primes.get(i));
             }
             System.out.println();
         }
+
         scn.close();
     }
 
-    public static ArrayList<Integer> sieve(int N) {
-
+    public static ArrayList<Integer> segmentedSieve(int L, int R) {
         ArrayList<Integer> primes = new ArrayList<>();
-        boolean[] arr = new boolean[N + 1];
-        for (int i = 2; i * i <= N; i++) {
-            if (arr[i] == false) {
-                for (int j = i * i; j <= N; j += i) {
-                    arr[j] = true;
-                }
+        int N = (int) Math.sqrt(R) + 1;
+        ArrayList<Integer> primesTillN = sieveOfEratosthenes(N);
+
+        boolean[] numbers = new boolean[R-L+1];
+        if(L==1) numbers[0] = true;
+        for(int i=0;i<primesTillN.size();i++) {
+            int p = primesTillN.get(i);
+            int fm = ((L/p)+1)*p;
+
+            if(fm < L) fm += p;
+            if(fm == p) fm += p;
+            
+            for(int j=fm;j<=R;j+=p) {
+                numbers[j-L] = true;
             }
         }
 
-        for (int i = 2; i <= N; i++) {
-            if (arr[i] == false) {
-                primes.add(i);
-            }
+
+        for(int i=L;i<=R;i++) {
+            if(!numbers[i-L]) primes.add(i);
         }
 
         return primes;
     }
+    public static ArrayList<Integer> sieveOfEratosthenes(int N) {
+        ArrayList<Integer> result = new ArrayList<>();
+        boolean[] primes = new boolean[N+1];
+        // false - prime, true - composite
 
-    public static ArrayList<Integer> segmentedSieve(ArrayList<Integer> primes, int m, int n) {
-        ArrayList<Integer> ans = new ArrayList<>();
-        boolean[] arr = new boolean[n-m + 1];
-     
-        for(int i=0;i<primes.size();i++) {
-            int prime = primes.get(i);
-            int idx = m - (m/prime) * prime;
-            for(int j=idx; j<arr.length-1;j+=prime) {
-                arr[j] = true;
-            }
-        }
-        System.out.println(arr);
-        for(int i=0;i<arr.length;i++) {
-            if(!arr[i]){
-                ans.add(m+i);
+        for(int i=2;i*i<=N;i++) {
+            if(!primes[i]) {
+                for(int j=i*i;j<=N;j+=i) {
+                    primes[j] = true;
+                }
             }
         }
 
-        return ans;
-    }
-}
-
-
-private static ArrayList<Integer> segmentedSieve(int s, int e) {
-    int len = (int) (Math.sqrt(e) + 1);
-    ArrayList<Integer> primes = sieveOfEratosthenes(len);
-    boolean[] arr2 = new boolean[e - s + 1];
-    if (s == 1) {
-        arr2[0] = true;
-    }
-    ArrayList<Integer> res = new ArrayList<>();
-    for (int p : primes) {
-
-        int st = (int) (p * (Math.ceil((double) s / p)));
-        if (st < s) {
-            st += p;
+        for(int i=2;i<=N;i++) {
+            if(!primes[i]) result.add(i);
         }
-        if (st == p) {
-            st += p;
-        }
-        for (int i = st; i <= e; i += p) {
-            arr2[i - s] = true;
-        }
+        return result;
     }
-    for (int i = 0; i < arr2.length; i++) {
-        if (!arr2[i]) {
-            res.add(i + s);
-        }
-    }
-    return res;
 }
