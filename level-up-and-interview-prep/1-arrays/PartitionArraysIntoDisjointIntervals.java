@@ -1,24 +1,22 @@
 // Leetcode 915
 // O(n), O(n)
 class Solution {
-    public int partitionDisjoint(int[] A) {
-        int[] prefixmax = new int[A.length];
-        prefixmax[0] = A[0];
-        for(int i=1;i<A.length;i++) {
-            prefixmax[i] = Math.max(prefixmax[i-1], A[i]);
+    public int partitionDisjoint(int[] nums) {
+        int n = nums.length;
+        int[] rightmin = new int[n];
+        rightmin[n-1] = nums[n-1];
+        for(int i=n-2;i>=0;i--) {
+            rightmin[i] = Math.min(rightmin[i+1], nums[i]);
         }
-        int suffixmin[] = new int[A.length];
-        suffixmin[A.length-1] = A[A.length-1];
-        for(int i=A.length-2; i>=0; i--) {
-            suffixmin[i] = Math.min(suffixmin[i+1], A[i]);
-        }
-        int i=0;
-        while(i<A.length-1) {
-            if(prefixmax[i] <= suffixmin[i+1]){
-                break;
+        
+        int leftmax = nums[0];
+        for(int i=0;i<n-1;i++) {
+            if(leftmax <= rightmin[i+1]) {
+                return i+1;
             }
-            i++;
+            leftmax = Math.max(leftmax, nums[i+1]);
         }
-        return i+1;
+        
+        return -1;
     }
 }

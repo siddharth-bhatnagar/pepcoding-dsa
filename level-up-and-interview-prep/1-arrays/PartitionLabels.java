@@ -22,3 +22,5 @@ class Solution {
         return list;
     }
 }
+
+// O(n) time, O(1) space
