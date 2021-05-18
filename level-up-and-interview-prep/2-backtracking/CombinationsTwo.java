@@ -3,35 +3,27 @@ import java.util.*;
 
 public class Main {
 
-    public static void combinations(int[] boxes, int ci, int ti, int lb) {
+    public static void combinations(int cb, int tb, int ssf, int ts, String asf) {
         // write your code here
-        int n = boxes.length;
-        if(ci == ti + 1) {
-            for(int item: boxes) {
-                if(item == 0) System.out.print("-");
-                else System.out.print("i");
+        if(cb == tb + 1) {
+            if(ssf == ts + 1) {
+                System.out.println(asf);
             }
-
-            System.out.println();
             return;
         }
 
-        for(int i=lb+1;i<n;i++) {
-            if(boxes[i] == 0) {
-                boxes[i] = 1;
-                combinations(boxes, ci+1, ti, i);
-                boxes[i] = 0;
-            }
-        }
+        combinations(cb + 1, tb, ssf+1, ts, asf + "i");
+        combinations(cb + 1, tb, ssf, ts, asf + "-");
     }
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int nboxes = Integer.parseInt(br.readLine());
         int ritems = Integer.parseInt(br.readLine());
-        combinations(new int[nboxes], 1, ritems, -1);
+        combinations(1, nboxes, 1, ritems, "");
     }
 
 }
 
-// lb - last box: index of the previously placed item;
+// cb -- current box, tb -- total box
+// ssf -- 
