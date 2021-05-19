@@ -1,10 +1,9 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class QueensPermutations2DBoxChooses {
 
     public static void queensPermutations(int qpsf, int tq, int row, int col, String asf, boolean[] queens) {
-        // write your code here
         if (row == tq) {
             if (qpsf == tq) {
                 System.out.println(asf);
@@ -28,7 +27,7 @@ public class Main {
         for (int i = 0; i < tq; i++) {
             if (queens[i] == false) {
                 queens[i] = true;
-                queensPermutations(qpsf+1, tq, nr, nc, asf + "q" + (i + 1) + ch, queens);
+                queensPermutations(qpsf + 1, tq, nr, nc, asf + "q" + (i + 1) + ch, queens);
                 queens[i] = false;
             }
         }
@@ -43,3 +42,9 @@ public class Main {
         queensPermutations(0, n, 0, 0, "", queens);
     }
 }
+
+/**
+ * There are r distinct queens to be placed in n boxes laid out in the form of a matrix
+ * Approach -- Box chooses
+ * Each box has to choose between multiple queens or select none
+ */
