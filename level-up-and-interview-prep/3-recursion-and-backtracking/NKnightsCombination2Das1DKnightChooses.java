@@ -6,10 +6,46 @@ public class Main {
     public static boolean IsKnightSafe(boolean[][] chess, int r, int c) {
         // write your code here
         int n = chess.length, m = chess[0].length;
-        if((r-2) > 0 && (c+1) < m) {
-            if(chess[][])
+        if ((r - 2) > 0 && (c + 1) < m) {
+            if (chess[r - 2][c + 1])
+                return true;
         }
 
+        if ((r - 2) > 0 && (c - 1) > 0) {
+            if (chess[r - 2][c - 1])
+                return true;
+        }
+        
+        if ((r - 1) > 0 && (c + 2) < m) {
+            if (chess[r - 1][c + 2])
+                return true;
+        }
+        
+        if ((r - 1) > 0 && (c - 2) > 0) {
+            if (chess[r - 1][c - 2])
+                return true;
+        }
+        
+        if ((r + 1) < n && (c + 2) < m) {
+            if (chess[r + 1][c + 2])
+                return true;
+        }
+        
+        if ((r + 1) < n && (c - 2) > 0) {
+            if (chess[r + 1][c - 2])
+                return true;
+        }
+        
+        if ((r + 2) < n && (c - 1) > 0) {
+            if (chess[r + 2][c - 1])
+                return true;
+        }
+        
+        if ((r + 2) < n && (c + 1) < m) {
+            if (chess[r + 2][c + 1])
+                return true;
+        }
+        
         return true;
     }
 
