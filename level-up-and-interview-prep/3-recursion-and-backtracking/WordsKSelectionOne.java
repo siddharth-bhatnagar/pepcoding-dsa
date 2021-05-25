@@ -22,7 +22,7 @@ public class WordsKSelectionOne {
   }
 
     public static void combination(int i, String ustr, int ssf, int ts, String asf) {
-        if (ssf == ustr.length()) {
+        if (i == ustr.length()) {
             if (ssf == ts) {
                 System.out.println(asf);
             }
