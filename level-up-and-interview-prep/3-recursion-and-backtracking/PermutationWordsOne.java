@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class PermutationWordsOne {
 
     public static void generateWords(int cs, int ts, HashMap<Character, Integer> fmap, String asf) {
         // write your code here

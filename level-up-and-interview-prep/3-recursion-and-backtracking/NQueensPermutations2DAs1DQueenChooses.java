@@ -1,7 +1,6 @@
 import java.io.*;
-import java.util.*;
 
-public class Main {
+public class NQueensPermutations2DAs1DQueenChooses {
 
     public static boolean IsQueenSafe(int[][] chess, int row, int col) {
         // row

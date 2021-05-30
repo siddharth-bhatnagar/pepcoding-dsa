@@ -1,10 +1,8 @@
 import java.io.*;
-import java.util.*;
 
-public class Main {
+public class QueensCombinations2Din1DQueenChooses {
 
     public static void queensCombinations(int qpsf, int tq, boolean[][] chess, int lcno) {
-        // write your code here
         if (qpsf == tq) {
             for (int i = 0; i < chess.length; i++) {
                 for (int j = 0; j < chess[0].length; j++) {
@@ -19,15 +17,15 @@ public class Main {
             System.out.println();
             return;
         }
-        
+        // lcno -- last cell number
         for (int cell = lcno + 1; cell < tq * tq; cell++) {
             int row = cell / chess[0].length;
             int col = cell % chess[0].length;
-            if (chess[row][col] == false) {
+            // if (chess[row][col] == false) {
                 chess[row][col] = true;
                 queensCombinations(qpsf + 1, tq, chess, cell);
                 chess[row][col] = false;
-            }
+            // }
         }
     }
 

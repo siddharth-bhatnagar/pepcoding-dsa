@@ -1,10 +1,8 @@
 import java.io.*;
-import java.util.*;
 
 public class QueensCombinations2DQueenChooses {
 
     public static void queensCombinations(int qpsf, int tq, boolean[][] chess, int i, int j) {
-        // write your code here
         if(qpsf == tq) {
             for(int row=0;row<chess.length;row++) {
                 for(int col=0;col<chess[0].length;col++) {

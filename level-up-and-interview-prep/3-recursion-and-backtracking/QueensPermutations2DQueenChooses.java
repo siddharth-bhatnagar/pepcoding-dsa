@@ -1,11 +1,8 @@
 import java.io.*;
-import java.util.*;
 
 public class QueensPermutations2DQueenChooses {
 
-    public static void queensPermutations(int qpsf, int tq, int[][] chess) {
-        // write your code here
-        
+    public static void queensPermutations(int qpsf, int tq, int[][] chess) {        
         if(qpsf == tq) {
             for(int i=0;i<chess.length;i++) {
                 for(int j=0;j<chess[0].length;j++) {

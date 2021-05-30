@@ -1,7 +1,6 @@
 import java.io.*;
-import java.util.*;
 
-public class Main {
+public class NKnightsCombination2Das1DKnightChooses {
 
     public static boolean IsKnightSafe(boolean[][] chess, int r, int c) {
         // write your code here

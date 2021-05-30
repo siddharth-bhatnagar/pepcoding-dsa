@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.*;
 
 public class CombinationsTwo {
@@ -10,7 +9,7 @@ public class CombinationsTwo {
         scn.close();
     }
 
-    public static void combinations(boolean[] boxes, int ci, int ti, int ib) {
+    public static void combinations(boolean[] boxes, int ci, int ti, int lb) {
         
         if(ci > ti) {
             for(int i=0;i<boxes.length;i++) {
@@ -24,13 +23,13 @@ public class CombinationsTwo {
             System.out.println();
             return;
         }
-
-        for(int i=ib+1;i<boxes.length;i++) {
-            if(boxes[i] == false) {
+        // lb - last box
+        for(int i=lb+1;i<boxes.length;i++) {
+            // if(boxes[i] == false) {
                 boxes[i] = true;
                 combinations(boxes, ci + 1, ti, i);
                 boxes[i] = false;
-            }
+            // }
         }
     }
 }

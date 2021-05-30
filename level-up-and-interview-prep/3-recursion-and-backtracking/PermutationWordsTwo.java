@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class PermutationWordsTwo {
 
     public static void generateWords(int cc, String str, Character[] spots, HashMap<Character, Integer> lastOccurence) {
         if (cc == str.length()) {
