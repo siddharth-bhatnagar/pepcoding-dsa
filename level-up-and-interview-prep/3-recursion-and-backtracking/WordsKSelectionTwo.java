@@ -1,35 +1,34 @@
+import java.io.*;
 import java.util.*;
 
 public class WordsKSelectionTwo {
 
     public static void main(String[] args) throws Exception {
-        Scanner scn = new Scanner(System.in);
-        String str = scn.nextLine();
-        int k = scn.nextInt();
-
-        HashSet<Character> unique = new HashSet<>();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String str = br.readLine();
+        int k = Integer.parseInt(br.readLine());
+        HashSet<Character> set = new HashSet<>();
         String ustr = "";
         for (char ch : str.toCharArray()) {
-            if (unique.contains(ch) == false) {
-                unique.add(ch);
+            if (!set.contains(ch)) {
                 ustr += ch;
+                set.add(ch);
             }
         }
 
-        combination(ustr, 0, k, -1, "");
-        scn.close();
+        selection(ustr, "", -1, k, 0);
     }
 
-    public static void combination(String ustr, int ssf, int ts, int lch, String asf) {
-        if (ssf == ts) {
+    public static void selection(String ustr, String asf, int ls, int k, int ssf) {
+
+        if (ssf == k) {
             System.out.println(asf);
             return;
         }
-        for (int i = lch + 1; i < ustr.length(); i++) {
+
+        for (int i = ls + 1; i < ustr.length(); i++) {
             char ch = ustr.charAt(i);
-            combination(ustr, ssf + 1, ts, i, asf + ch);
+            selection(ustr, asf + ch, i, k, ssf + 1);
         }
-
     }
-
 }

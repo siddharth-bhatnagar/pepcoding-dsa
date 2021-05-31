@@ -4,7 +4,7 @@ import java.util.*;
 public class PermutationWordsOne {
 
     public static void generateWords(int cs, int ts, HashMap<Character, Integer> fmap, String asf) {
-        // write your code here
+        // position chooses
         if (cs > ts) {
             System.out.println(asf);
             return;
