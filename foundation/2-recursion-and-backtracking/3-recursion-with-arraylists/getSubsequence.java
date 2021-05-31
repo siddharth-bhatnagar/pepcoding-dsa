@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class GetSubsequence {
+public class getSubsequence {
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
