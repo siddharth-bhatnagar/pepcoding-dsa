@@ -46,9 +46,9 @@ public class FindInAGenericTree {
 
     public static boolean find(Node node, int data) {
         // write your code here
-        if (node == null) {
-            return false;
-        }
+        // if (node == null) {
+        //     return false;
+        // }
 
         if (node.data == data) {
             return true;

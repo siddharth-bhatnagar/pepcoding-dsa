@@ -1,4 +1,5 @@
-// Leetcode 144
+// Leetcode 94
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -14,11 +15,8 @@
  *     }
  * }
  */
-
-// Time complexity - O(3N), N - 
-// Space Complexity - O(1)
 class Solution {
-    public List<Integer> preorderTraversal(TreeNode root) {
+    public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> ans = new ArrayList<>();
         
         // if root becomes null, it means complete tree traversed
@@ -33,23 +31,18 @@ class Solution {
                 // Accessing left node
                 TreeNode rootp1 = root.left;
                 
-                // finding right most node till it becomes null or points to root
                 while(rootp1.right != null && rootp1.right != root) {
                     rootp1 = rootp1.right;
                 }
                 
-                // loop broke because of null
-                // it means we visited the node first time
                 if(rootp1.right == null) {  // 1st time
-                    // adding in ans
-                    ans.add(root.val);
-                    // changing root
-                    rootp1.right = root;
                     
+                    rootp1.right = root;
                     root = root.left;
                 }
-                
+
                 else if(rootp1.right == root) {  // 2nd time
+                    ans.add(root.val);
                     rootp1.right = null;
                     root = root.right;
                 }
