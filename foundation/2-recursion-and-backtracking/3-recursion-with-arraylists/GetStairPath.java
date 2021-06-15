@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.*;
 
 public class GetStairPath {
@@ -8,6 +7,7 @@ public class GetStairPath {
         int n = scn.nextInt();
         ArrayList < String > a = getStairPaths(n);
         System.out.println(a);
+        scn.close();
     }
 
     public static ArrayList < String > getStairPaths(int n) {

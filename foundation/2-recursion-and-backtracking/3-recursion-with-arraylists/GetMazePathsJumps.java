@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.*;
 
 public class GetMazePathsJumps {
@@ -13,6 +12,7 @@ public class GetMazePathsJumps {
         int dc = m - 1;
         ArrayList < String > ans = getMazePaths(sr, sc, dr, dc);
         System.out.println(ans);
+        scn.close();
     }
 
     public static ArrayList < String > getMazePaths(int sr, int sc, int dr, int dc) {

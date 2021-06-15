@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.*;
 
 public class GetKPC {
@@ -8,6 +7,7 @@ public class GetKPC {
         String st = scn.nextLine();
         ArrayList < String > ans = getKPC(st);
         System.out.println(ans);
+        scn.close();
     }
 
     static String[] keypad = {
