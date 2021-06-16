@@ -3,7 +3,8 @@
         "level-up-and-interview-prep/3-recursion-and-backtracking",
         "foundation/4-basic-data-structures/4-binary-tree",
         "foundation/4-basic-data-structures/3-generic-tree",
+        "foundation/2-recursion-and-backtracking/4-recursion-on-the-way-up",
         "foundation/2-recursion-and-backtracking/3-recursion-with-arraylists",
-        "foundation/2-recursion-and-backtracking/4-recursion-on-the-way-up"
+        "foundation/2-recursion-and-backtracking/1-introduction-to-recursion"
     ]
 }
