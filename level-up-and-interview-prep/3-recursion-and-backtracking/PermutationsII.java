@@ -1,5 +1,7 @@
 // Leetcode 47
 
+// Approach 1-Box/Position chooses
+
 class Solution {
     public List<List<Integer>> permuteUnique(int[] nums) {
         list = new ArrayList<>();
@@ -39,5 +41,48 @@ class Solution {
             }
         }
 
+    }
+}
+
+
+// Approach two -- Item chooses
+
+class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        list = new ArrayList<>();
+        HashMap<Integer, Integer> lasto = new HashMap<>();
+        for(int n: nums) {
+            lasto.put(n, -1);
+        }
+        
+        Integer[] spots = new Integer[nums.length];
+        
+        solve(0, nums, lasto, spots);
+        
+        return list;
+    }
+    
+    List<List<Integer>> list;
+    
+    public void solve(int idx, int[] nums, HashMap<Integer, Integer> lasto, Integer[] spots) {
+        
+        if(idx == nums.length) {
+            List<Integer> sm = new ArrayList<>(Arrays.asList(spots));
+            list.add(sm);
+            return;
+        }
+        
+        int val = nums[idx];
+        int lo = lasto.get(val);
+        
+        for(int i = lo+1;i<spots.length;i++) {
+            if(spots[i] == null) {
+                spots[i] = val;
+                lasto.put(val, i);
+                solve(idx + 1, nums, lasto, spots);
+                lasto.put(val, lo);
+                spots[i] = null;
+            }
+        }
     }
 }
