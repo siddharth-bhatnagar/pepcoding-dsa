@@ -79,3 +79,59 @@ public class SudokuSolver {
         scn.close();
     }
 }
+
+// Leetcode 37
+class Solution {
+    public void solveSudoku(char[][] board) {
+        solve(board, -1);
+    }
+
+    public boolean solve(char[][] board, int cell) {
+
+        for (int i = cell + 1; i < 81; i++) {
+            int row = i / 9;
+            int col = i % 9;
+            if (board[row][col] == '.') {
+                for (char num = '1'; num <= '9'; num++) {
+                    if (valid(board, row, col, num)) {
+                        board[row][col] = num;
+                        if (solve(board, i))
+                            return true;
+                        else {
+                            board[row][col] = '.';
+                        }
+
+                    }
+                }
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public boolean valid(char[][] board, int row, int col, char num) {
+        // checking in row
+        for (int j = 0; j < board[0].length; j++) {
+            if (board[row][j] == num)
+                return false;
+        }
+
+        // checking for col
+        for (int i = 0; i < board.length; i++) {
+            if (board[i][col] == num)
+                return false;
+        }
+
+        int rsp = (row / 3) * 3;
+        int csp = (col / 3) * 3;
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (board[rsp + i][csp + j] == num)
+                    return false;
+            }
+        }
+        return true;
+    }
+}
