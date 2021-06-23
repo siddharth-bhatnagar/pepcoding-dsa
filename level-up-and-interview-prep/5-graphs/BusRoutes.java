@@ -1,58 +1,70 @@
 // Leetcode 815
 
-
 class Solution {
-    public class Pair {
-        int busstopno;
-        int buscount;
-
-        public Pair(int x, int y) {
-            busstopno = x;
-            buscount = y;
-        }
-    }
-
     public int numBusesToDestination(int[][] routes, int source, int target) {
-        int n = routes.length;
-        HashMap<Integer, ArrayList<Integer>> stopmap = new HashMap<>();
-
-        for (int i = 0; i < n; i++) { // bus number i
-            for (int j = 0; j < routes[i].length; j++) { // routes[i][j] = bus stop
-                int busstop = routes[i][j];
-                ArrayList<Integer> busno = stopmap.getOrDefault(busstop, new ArrayList<>());
-                busno.add(i);
-                stopmap.put(busstop, busno);
+        HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
+        // Get the arrayList at the current bus stop, if it doesn't exist, init new AL
+        // i reps bus number
+        for (int i = 0; i < routes.length; i++) {
+            for (int j = 0; j < routes[i].length; j++) {
+                int bs = routes[i][j];
+                ArrayList<Integer> buses = map.getOrDefault(bs, new ArrayList<Integer>());
+                buses.add(i);
+                map.put(bs, buses);
             }
         }
 
-        LinkedList<Pair> queue = new LinkedList<>();
-        HashSet<Integer> stopvis = new HashSet<>();
-        HashSet<Integer> busnovis = new HashSet<>();
+        // Make a queue for standard bfs processing
+        LinkedList<Helper> queue = new LinkedList<>();
+        queue.addLast(new Helper(source, 0));
 
-        queue.addLast(new Pair(source, 0));
-        stopvis.add(source);
+        // Visited Sets
+        HashSet<Integer> busesTaken = new HashSet<>();
+        HashSet<Integer> stopsVis = new HashSet<>();
+        stopsVis.add(source);
 
         while (queue.size() > 0) {
-            Pair rem = queue.removeFirst();
-            if (rem.busstopno == target)
-                return rem.buscount;
-            ArrayList<Integer> buses = stopmap.get(rem.busstopno);
-            for (int bus : buses) {
-                if (busnovis.contains(bus))
-                    continue;
+            Helper rem = queue.removeFirst();
+            if (rem.busStop == target)
+                return rem.busCount;
 
-                int[] arr = routes[bus];
-                for (int stop : arr) {
-                    if (stopvis.contains(stop))
-                        continue;
+            for (int bus : map.get(rem.busStop)) {
 
-                    queue.addLast(new Pair(stop, rem.buscount + 1));
-                    stopvis.add(stop);
+                if (!busesTaken.contains(bus)) {
+
+                    busesTaken.add(bus);
+
+                    for (int i = 0; i < routes[bus].length; i++) {
+
+                        int stop = routes[bus][i];
+
+                        if (!stopsVis.contains(stop)) {
+                            stopsVis.add(stop);
+                            queue.addLast(new Helper(stop, rem.busCount + 1));
+                        }
+
+                    }
+
                 }
-                busnovis.add(bus);
             }
+
         }
 
         return -1;
     }
+
+    public class Helper {
+        int busStop;
+        int busCount;
+
+        public Helper(int busStop, int busCount) {
+            this.busStop = busStop;
+            this.busCount = busCount;
+        }
+    }
 }
+
+// Idea is to apply BFS
+// To minimise look up times, we will store bus stop number -> bus number
+// mappings in hashmap
+// Complexity: O(V+E), V -> Vertex, E -> Edge
