@@ -39,69 +39,63 @@ class Gfg {
 // User function Template for Java
 
 class Solution {
-    Stack<Integer> stack = new Stack<>();
+    // Function to find number of strongly connected components in the graph.
+    public int kosaraju(int V, ArrayList<ArrayList<Integer>> graph) {
 
-    public int kosaraju(int V, ArrayList<ArrayList<Integer>> adj) {
-
-        // step 1
-        LinkedList<Integer> stack = new LinkedList<>();
-        boolean[] vis = new boolean[V];
-
+        // Step 1
+        Stack<Integer> stack = new Stack<>();
+        boolean vis[] = new boolean[V];
         for (int i = 0; i < V; i++) {
-            if (!vis[i]) {
-                dfs1(adj, i, stack, vis);
+            if (vis[i] == false) {
+                dfs1(i, graph, vis, stack);
             }
         }
 
-        // step 2
-        ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
+        // Step 2
+        ArrayList<ArrayList<Integer>> newGraph = new ArrayList<>();
         for (int i = 0; i < V; i++) {
-            graph.add(new ArrayList<>());
+            newGraph.add(new ArrayList<Integer>());
         }
 
         for (int i = 0; i < V; i++) {
-            ArrayList<Integer> nbrs = adj.get(i);
+            ArrayList<Integer> nbrs = graph.get(i);
             for (int nbr : nbrs) {
-                graph.get(nbr).add(i);
+                newGraph.get(nbr).add(i);
             }
         }
 
-        // step 3
-        int ans = 0;
+        // Step 3
+        int scc = 0;
         vis = new boolean[V];
-
         while (stack.size() > 0) {
-            int rem = stack.removeFirst();
-            if (!vis[rem]) {
-                dfs2(graph, rem, vis);
-                ans++;
+            int node = stack.pop();
+            if (vis[node] == false) {
+                dfs2(newGraph, node, vis);
+                scc++;
             }
         }
-        return ans;
+
+        return scc;
     }
 
-    public void dfs1(ArrayList<ArrayList<Integer>> adj, int src, LinkedList<Integer> stack, boolean[] vis) {
+    public void dfs1(int src, ArrayList<ArrayList<Integer>> graph, boolean[] vis, Stack<Integer> stack) {
+
         vis[src] = true;
-
-        ArrayList<Integer> nbrs = adj.get(src);
-        for (int nbr : nbrs) {
-            if (!vis[nbr]) {
-                dfs1(adj, nbr, stack, vis);
+        for (int nbr : graph.get(src)) {
+            if (vis[nbr] == false) {
+                dfs1(nbr, graph, vis, stack);
             }
         }
 
-        stack.addFirst(src);
+        stack.push(src);
     }
 
-    public void dfs2(ArrayList<ArrayList<Integer>> adj, int src, boolean[] vis) {
+    public void dfs2(ArrayList<ArrayList<Integer>> graph, int src, boolean[] vis) {
         vis[src] = true;
-
-        ArrayList<Integer> nbrs = adj.get(src);
-        for (int nbr : nbrs) {
-            if (!vis[nbr]) {
-                dfs2(adj, nbr, vis);
+        for (int nbr : graph.get(src)) {
+            if (vis[nbr] == false) {
+                dfs2(graph, nbr, vis);
             }
         }
     }
-
 }
