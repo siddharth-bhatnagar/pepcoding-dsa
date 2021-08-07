@@ -24,5 +24,4 @@ public class Fibonacci {
         dp[n] = n1 + n2;
         return dp[n];
     }
-
 }
