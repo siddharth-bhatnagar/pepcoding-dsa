@@ -1,32 +1,66 @@
-import java.io.*;
 import java.util.*;
 
 public class ClimbStairs {
     public static void main(String[] args) throws Exception {
-        // write your code here
         Scanner scn = new Scanner(System.in);
         int n = scn.nextInt();
 
-        System.out.println(stair(n, new int[n+1]));
+        int a1 = countPathsBrute(n);
+        int a2 = countPathsMemoized(n, new int[n + 1]);
+        int a3 = countPathsTab(n);
+
+        System.out.println(a3);
+        scn.close();
     }
 
-    public static int stair(int n,int[] dp) {
-        if(n==0)
+    public static int countPathsBrute(int n) {
+        if(n<0) return 0;
+
+        if (n == 0 || n == 1)
             return 1;
 
-        if(n<0)
-            return 0;
+        int x = countPathsBrute(n - 1);
+        int y = countPathsBrute(n - 2);
+        int z = countPathsBrute(n - 3);
 
-        if(dp[n]!=0)
+        int count = x + y + z;
+
+        return count;
+    }
+
+    public static int countPathsMemoized(int n, int dp[]) {
+        if(n<0) return 0;
+        
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+
+        if (dp[n] != 0)
             return dp[n];
 
-        int nm1 = stair(n-1,dp);
-        int nm2 = stair(n-2,dp);
-        int nm3 = stair(n-3,dp);
+        int x = countPathsMemoized(n - 1, dp);
+        int y = countPathsMemoized(n - 2, dp);
+        int z = countPathsMemoized(n - 3, dp);
 
-        int ans = nm1 + nm2 + nm3;
-        dp[n] = ans;
-        return ans;
+        dp[n] = x + y + z;
+        return dp[n];
+    }
+
+    public static int countPathsTab(int n) {
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+
+        for (int i = 1; i <= n; i++) {
+            if (i == 1) {
+                dp[i] = dp[i - 1];
+            } else if (i == 2) {
+                dp[i] = dp[i - 1] + dp[i - 2];
+            } else {
+                dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];
+            }
+        }
+
+        return dp[n];
     }
 
 }
