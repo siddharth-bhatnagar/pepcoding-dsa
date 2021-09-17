@@ -1,114 +1,62 @@
-import java.util.HashMap;
-import java.util.Map;
-
-public class LRUCache<T> {
-
-    private final int capacity;
-    private int size;
-    private final Map<String, Node> hashmap;
-    private final DoublyLinkedList internalQueue;
-
-    LRUCache(final int capacity) {
-        this.capacity = capacity;
-        this.hashmap = new HashMap<>();
-        this.internalQueue = new DoublyLinkedList();
-        this.size = 0;
+class LRUCache {  
+    Node head = new Node(0, 0), tail = new Node(0, 0);
+    Map<Integer, Node> map = new HashMap();
+    int capacity;
+    
+    public LRUCache(int _capacity) {
+      capacity = _capacity;
+      head.next = tail;
+      tail.prev = head;
     }
-
-    public T get(final String key) {
-        Node node = hashmap.get(key);
-        if(node == null) {
-            return null;
-        }
-        internalQueue.modeNodeToFront(node);
-        return hashmap.get(key).value;
+  
+    public int get(int key) {
+      if(map.containsKey(key)) {
+        Node node = map.get(key);
+        remove(node);
+        insert(node);
+        return node.value;
+      } else {
+        return -1;
+      }
     }
-
-    public void put(final String key, final T value) {
-        Node currentNode = hashmap.get(key);
-        if(currentNode != null) {
-            currentNode.value = value;
-            internalQueue.modeNodeToFront(currentNode);
-            return;
-        }
-
-        if(size == capacity) {
-            String rearNodeKey = internalQueue.getRearKey();
-            internalQueue.removeNodeFromRear();
-            hashmap.remove(rearNodeKey);
-            size--;
-        }
-
-        Node node = new Node(key, value);
-        internalQueue.addNodeToFront(node);
-        hashmap.put(key, node);
-        size++;
+  
+    public void put(int key, int value) {
+      if(map.containsKey(key)) {
+        remove(map.get(key));
+      }
+      if(map.size() == capacity) {
+        remove(tail.prev);
+      }
+      insert(new Node(key, value));
     }
-
-    private class Node {
-        String key;
-        T value;
-        Node next, prev;
-        public Node(final String key, final T value) {
-            this.key = key;
-            this.value = value;
-            this.next = null;
-            this.prev = null;
-        }
+    
+    private void remove(Node node) {
+      map.remove(node.key);
+      node.prev.next = node.next;
+      node.next.prev = node.prev;
     }
-
-    private class DoublyLinkedList {
-        private Node front, rear;
-        public DoublyLinkedList() {
-            front = rear = null;
-        }
-
-        private void addNodeToFront(final Node node) {
-            if(rear == null) {
-                front = rear = node;
-                return;
-            }
-            node.next = front;
-            front.prev = node;
-            front = node;
-        }
-
-        public void modeNodeToFront(final Node node) {
-            if(front == node) {
-                return;
-            }
-
-            if(node == rear) {
-                rear = rear.prev;
-                rear.next = null;
-            } else {
-                node.prev.next = node.next;
-                node.next.prev = node.prev;
-            }
-
-            node.prev = null;
-            node.next = front;
-            front.prev = node;
-            front = node;
-        }
-
-        private void removeNodeFromRear() {
-            if(rear == null) {
-                return;
-            }
-
-            System.out.println("Deleting key: " + rear.key);
-            if(front == rear) {
-                front = rear = null;
-            } else {
-                rear = rear.prev;
-                rear.next = null;
-            }
-        }
-
-        private String getRearKey() {
-            return rear.key;
-        }
+    
+    private void insert(Node node){
+      map.put(node.key, node);
+      node.next = head.next;
+      node.next.prev = node;
+      head.next = node;
+      node.prev = head;
     }
-}
-
+    
+    class Node{
+      Node prev, next;
+      int key, value;
+      Node(int _key, int _value) {
+        key = _key;
+        value = _value;
+      }
+    }
+  }
+  
+  /**
+   * Your LRUCache object will be instantiated and called as such:
+   * LRUCache obj = new LRUCache(capacity);
+   * int param_1 = obj.get(key);
+   * obj.put(key,value);
+   */
