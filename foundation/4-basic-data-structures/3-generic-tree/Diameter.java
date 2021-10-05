@@ -1,6 +1,9 @@
 import java.io.*;
 import java.util.*;
 
+// diameter --> distance between two farthest nodes in terms of edge count
+// startegy --> find max height and second max height for each node, diameter will be sum of the two + 2
+
 public class Diameter {
     private static class Node {
         int data;
@@ -54,34 +57,29 @@ public class Diameter {
         }
 
         Node root = construct(arr);
-        mh = -1;
-        smh = -1;
-        int ans = diameter(root);
-        System.out.println(ans);
+        dia = 0;
+        solve(root);
+        System.out.println(dia);
     }
 
-    private static int mh, smh;
-    public static int diameter(Node root) {
-        for(Node child: root.children) {
-            int h = helper(child);
-            if(h > mh) {
-                mh = h;
-            }else if(h > smh) {
-                smh = h;
+    private static int dia;
+
+    private static int solve(Node node) {
+        int lch = -1;
+        int slch = -1;
+        for (Node child : node.children) {
+            int ch = solve(child);
+            if (ch > lch) {
+                slch = lch;
+                lch = ch;
+            } else if (ch > slch) {
+                slch = ch;
             }
         }
 
-        return mh + smh + 2;    
-    }
+        int cand = lch + slch + 2;
+        dia = Math.max(dia, cand);
 
-    private static int helper(Node node) {
-        int h=-1;
-        for(Node child: node.children) {
-            int temp = helper(child);
-            h = Math.max(temp, h);
-        }
-        h+=1;
-        return h;
+        return lch + 1;
     }
-
 }
