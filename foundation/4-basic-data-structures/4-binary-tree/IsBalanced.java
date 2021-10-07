@@ -15,7 +15,7 @@
  */
 
 //  Leetcode 110
-class isBalanced {
+class IsBalanced {
     boolean balanced;
     public boolean isBalanced(TreeNode root) {
         balanced = true;
