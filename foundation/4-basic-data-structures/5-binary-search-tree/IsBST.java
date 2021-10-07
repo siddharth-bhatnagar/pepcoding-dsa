@@ -117,6 +117,20 @@ public class IsBST {
         return fp;
     }
 
+    public static boolean isBST2(Node root) {
+        return helper(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+
+    public static boolean helper(Node node, long min, long max) {
+        if(node == null) return true;
+        if(node.data >= max || node.data <= min) return false;
+
+        boolean left = helper(node.left, min, node.data);
+        boolean right = helper(node.left, node.data, max);
+
+        return (left && right);
+    }
+
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
