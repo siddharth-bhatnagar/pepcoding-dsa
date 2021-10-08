@@ -79,26 +79,23 @@ public class TargetSumPairInBST {
         display(node.right);
     }
 
-    // O(n*h)
-    public static void pairSum(Node node, int target, Node actualRoot) {
-        if (node == null) {
+    // O(N*H) or O(NlogN)
+    public static void approach1(Node node, int target, Node root) {
+        if (node == null)
             return;
+
+        approach1(node.left, target, root);
+        int comp = target - node.data;
+        if (node.data < comp && find(root, comp)) {
+            System.out.println(node.data + " " + comp);
         }
-        pairSum(node.left, target, actualRoot);
-        int x = node.data;
-        int xdash = target - node.data;
-        if (xdash > x) {
-            boolean flag = find(actualRoot, xdash);
-            if (flag)
-                System.out.println(x + " " + xdash);
-        }
-        pairSum(node.right, target, actualRoot);
+        approach1(node.right, target, root);
     }
 
     public static boolean find(Node node, int data) {
-        if (node == null) {
+        if (node == null)
             return false;
-        }
+
         if (node.data > data) {
             return find(node.left, data);
         } else if (node.data < data) {
@@ -108,36 +105,101 @@ public class TargetSumPairInBST {
         }
     }
 
+    // O(2*N), O(N)
     static ArrayList<Integer> inorder;
 
-    public static void pairSumO2n(Node node) {
-        if (node == null) {
-            return;
-        }
+    public static void approach2(Node node, int target) {
+        inorder = new ArrayList<Integer>();
+        inorderTraversal(node);
+        int i = 0;
+        int j = inorder.size() - 1;
 
-        pairSumO2n(node.left);
-        inorder.add(node.data);
-        pairSumO2n(node.right);
-    }
-
-    // O(2n)
-    public static void ptsp(Node node, int target) {
-        inorder = new ArrayList<>();
-        pairSumO2n(node);
-        int si = 0;
-        int ei = inorder.size() - 1;
-        while (si != ei) {
-            int sum = inorder.get(si) + inorder.get(ei);
-            if (sum < target) {
-                si++;
-            } else if (sum > target) {
-                ei--;
+        while (i < j) {
+            int a = inorder.get(i);
+            int b = inorder.get(j);
+            if ((a + b) < target) {
+                i++;
+            } else if ((a + b) > target) {
+                j--;
             } else {
-                System.out.println(inorder.get(si) + " " + inorder.get(ei));
-                si++;
-                ei--;
+                System.out.println(a + " " + b);
+                i++;
+                j--;
             }
         }
+    }
+
+    public static void inorderTraversal(Node node) {
+        if (node == null)
+            return;
+        inorderTraversal(node.left);
+        inorder.add(node.data);
+        inorderTraversal(node.right);
+    }
+
+    // O(N), O(H)
+    public static void approach3(Node root, int target) {
+        Stack<Pair> lc = new Stack<>();
+        Stack<Pair> rc = new Stack<>();
+        lc.push(new Pair(root, 0));
+        rc.push(new Pair(root, 0));
+
+        // Inorder, Reverse Inorder
+        Node start = getChildInorder(lc);
+        Node end = getChildRevInorder(rc);
+
+        while (start != end) {
+            if (start.data + end.data < target) {
+                start = getChildInorder(lc);
+            } else if (start.data + end.data > target) {
+                end = getChildRevInorder(rc);
+            } else {
+                System.out.println(start.data + " " + end.data);
+                start = getChildInorder(lc);
+                end = getChildRevInorder(rc);
+            }
+        }
+
+    }
+
+    public static Node getChildInorder(Stack<Pair> stack) {
+        while (stack.size() > 0) {
+            Pair top = stack.peek();
+            if (top.state == 0) {
+                if (top.node.left != null)
+                    stack.push(new Pair(top.node.left, 0));
+                top.state++;
+            } else if (top.state == 1) {
+                if (top.node.right != null)
+                    stack.push(new Pair(top.node.right, 0));
+                top.state++;
+                return top.node;
+            } else {
+                stack.pop();
+            }
+        }
+
+        return null;
+    }
+
+    public static Node getChildRevInorder(Stack<Pair> stack) {
+        while (stack.size() > 0) {
+            Pair top = stack.peek();
+            if (top.state == 0) {
+                if (top.node.right != null)
+                    stack.push(new Pair(top.node.right, 0));
+                top.state++;
+            } else if (top.state == 1) {
+                if (top.node.left != null)
+                    stack.push(new Pair(top.node.left, 0));
+                top.state++;
+                return top.node;
+            } else {
+                stack.pop();
+            }
+        }
+
+        return null;
     }
 
     public static void main(String[] args) throws Exception {
@@ -157,8 +219,9 @@ public class TargetSumPairInBST {
 
         Node root = construct(arr);
         // write your code here
-        pairSum(root, data, root);
-        ptsp(root, data);
+        approach1(root, data, root);
+        approach2(root, data);
+        approach3(root, data);
     }
 
 }
