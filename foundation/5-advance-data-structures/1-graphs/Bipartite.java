@@ -37,12 +37,12 @@ public class Bipartite {
     }
 
     public static boolean solve(ArrayList<Edge>[] graph) {
+        LinkedList<Integer> queue = new LinkedList<>();
+        int[] vis = new int[graph.length];
         for (int i = 0; i < graph.length; i++) {
-            LinkedList<Integer> queue = new LinkedList<>();
-            int[] vis = new int[graph.length];
+            if(vis[i] != 0) continue;
             queue.addLast(i);
             vis[i] = 10;
-
             while (queue.size() > 0) {
                 int src = queue.removeFirst();
 
