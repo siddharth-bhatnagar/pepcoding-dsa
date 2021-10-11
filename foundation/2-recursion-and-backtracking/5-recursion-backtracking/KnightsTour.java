@@ -22,6 +22,7 @@ public class KnightsTour {
             chess[r][c] = move;
             displayBoard(chess);
             chess[r][c] = 0;
+            return;
         }
 
         chess[r][c] = move;
