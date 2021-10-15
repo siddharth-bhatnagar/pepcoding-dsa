@@ -339,6 +339,36 @@ public class OddEvenLinkedList {
                 return;
             }
         }
+
+        public ListNode oddEvenList(ListNode head) {
+            if(head == null || head.next == null) return head;
+            
+            ListNode odd = new ListNode();
+            ListNode even = new ListNode();
+            
+            ListNode evenTail = even;
+            ListNode oddTail = odd;
+            
+            ListNode p = head;
+            int count = 1;
+            while(p != null) {
+                if(count % 2 == 0) {
+                    evenTail.next = p;
+                    evenTail = p;
+                }
+                else {
+                    oddTail.next = p;
+                    oddTail = p;
+                }
+                p = p.next;
+                count++;
+            }
+            
+            oddTail.next = even.next;
+            evenTail.next = null;
+            
+            return odd.next;
+        }
     }
 
     public static void main(String[] args) throws Exception {
