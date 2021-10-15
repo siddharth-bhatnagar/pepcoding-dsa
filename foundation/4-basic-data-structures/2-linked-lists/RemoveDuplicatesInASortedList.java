@@ -329,3 +329,22 @@ public class RemoveDuplicatesInASortedList {
         l1.display();
     }
 }
+
+// Leetcode 83
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        if(head == null || head.next == null) return head;
+        
+        ListNode prev = head;
+        while(prev != null && prev.next != null) {
+            ListNode curr = prev;
+            while(curr != null && prev.val == curr.val) {
+                curr = curr.next;
+            }
+            
+            prev.next = curr;
+            prev = curr;
+        }
+        return head;
+    }
+}
