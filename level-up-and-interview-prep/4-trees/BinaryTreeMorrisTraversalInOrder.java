@@ -52,3 +52,14 @@ class Solution {
         return ans;
     }
 }
+
+/*
+
+Concept behind Morris Traversal in Binary Tree is Threaded Binary Tree. In TBT, we have threads (back edges) from leaf nodes or 
+nodes with left != null but right == null towards the inorder successor or the node which should come next in inorder. The right most node
+in the tree points to null.
+
+The intuition behind TBT is that in inorder traversal using stack or recursion, we store each child's parent node and when we visit
+the parent node for the second time, it implies we have traversed the left subtree.
+
+*/
