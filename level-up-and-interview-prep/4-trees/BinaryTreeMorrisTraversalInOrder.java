@@ -60,6 +60,6 @@ nodes with left != null but right == null towards the inorder successor or the n
 in the tree points to null.
 
 The intuition behind TBT is that in inorder traversal using stack or recursion, we store each child's parent node and when we visit
-the parent node for the second time, it implies we have traversed the left subtree.
+the parent node for the second time, it implies we have traversed the left subtree and we are coming from right most node of the left subtree.
 
 */
