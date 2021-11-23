@@ -15,7 +15,7 @@ public class Quicksort {
     }
 
     public static void quicksort(int arr[], int lo, int hi) {
-        if(lo<=hi) {
+        if(lo>=hi) {
             return;
         }
 
