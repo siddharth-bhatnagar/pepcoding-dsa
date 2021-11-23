@@ -1,5 +1,6 @@
 // Leetcode 987
 // Complexity: O(nlogn)
+// Constraint - All nodes at the same vertical level and same horizontal level should be sorted in asc order
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
