@@ -63,9 +63,9 @@ public class MaximumOfGenericTree {
                 max = t;
             }
         }
-        if(max<node.data){
+        f(max<node.data){
             max = node.data;
-        }
+        }i
         return max;
     }
 
