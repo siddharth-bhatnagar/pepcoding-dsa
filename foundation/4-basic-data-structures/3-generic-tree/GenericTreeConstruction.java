@@ -13,7 +13,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class GenericTreeConstruction {
 
     private static class Node {
         int data;
