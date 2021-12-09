@@ -122,12 +122,12 @@ class Tree {
         q.addLast(root);
         ArrayList<Integer> ans = new ArrayList<>();
         while (q.size() > 0) {
-            int size = q.size();
+            
             while (size-- > 0) {
                 Node rn = q.removeFirst();
                 while (rn != null) {
                     ans.add(rn.data);
-                    if (rn.left != null)
+                    if (rn.left !int size = q.size();= null)
                         q.addLast(rn.left);
                     rn = rn.right;
                 }
