@@ -46,4 +46,58 @@ class Solution {
 // Time: O(N)
 // Space: O(H) 
 
-// Can be optimised to O(1) extra space using morris inorder traversal
+// Can be optimised to O(1) extra space using morris inorder traversal given below
+
+class Solution {
+    public void recoverTree(TreeNode root) {
+        TreeNode prev = new TreeNode(Integer.MIN_VALUE);
+        TreeNode first = null, second = null;
+        
+        while(root != null) {
+            if(root.left != null) {
+                TreeNode node = root.left;
+                while(node.right != null && node.right != root) {
+                    node = node.right;
+                }
+                
+                if(node.right == null) {
+                    node.right = root;
+                    root = root.left;
+                }
+                else if(node.right == root) {
+                    if(first == null && root.val < prev.val) {
+                        first = prev;
+                        second = root;
+                    }
+                    else if(root.val < prev.val) {
+                        second = root;
+                    }
+                    
+                    prev = root;
+                    node.right = null;
+                    root = root.right;
+                }
+            }
+            else {
+                if(first == null && root.val < prev.val) {
+                        first = prev;
+                        second = root;
+                }
+                else if(root.val < prev.val) {
+                    second = root;
+                }
+                    
+                prev = root;
+                
+                root = root.right;
+            }
+        }
+        
+        
+        if(first != null) {
+            int temp = first.val;
+            first.val = second.val;
+            second.val = temp;
+        }
+    }
+}
