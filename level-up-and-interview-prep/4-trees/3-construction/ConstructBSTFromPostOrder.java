@@ -85,6 +85,8 @@ class GFG {
     }
 }
 
-// This is Ranges approach, can be solved using NSE on left array and previous
+// This is Ranges approach, can be solved using NSE on left array(problem in case where -1 is present in nse array) and previous
 // approaches done for Binary tree construction
 // Complexity : O(N) time, O(H) space
+
+
