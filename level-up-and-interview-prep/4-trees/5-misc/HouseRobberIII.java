@@ -30,3 +30,26 @@ class Solution {
         }
     }
 }
+
+
+// Little bit smarter, prefer below for olt and above for interview
+class Solution {
+    public int rob(TreeNode root) {
+        int[] result = robb(root);
+        return Math.max(result[0], result[1]);
+    }
+    
+    private int[] robb(TreeNode node) {
+        if(node == null) return new int[2];
+        
+        int[] left = robb(node.left);
+        int[] right = robb(node.right);
+        
+        int[] house = new int[2];
+        
+        house[0] = left[1] + node.val + right[1];
+        house[1] = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+        
+        return house;
+    }
+}
