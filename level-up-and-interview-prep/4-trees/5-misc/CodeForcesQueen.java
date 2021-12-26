@@ -93,7 +93,7 @@ public class CodeForcesQueen {
             return;
         }
 
-        Collections.sort(ans);
+        // Collections.sort(ans);
         for(int val: ans) System.out.print(val + " ");
     }
 }
