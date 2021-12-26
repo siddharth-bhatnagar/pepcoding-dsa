@@ -1,7 +1,8 @@
 {
     "java.project.sourcePaths": [
+        "foundation/4-basic-data-structures/5-binary-search-tree",
         "foundation/4-basic-data-structures/3-generic-tree",
         "foundation/4-basic-data-structures/2-linked-lists",
-        "foundation/4-basic-data-structures/5-binary-search-tree"
+        "level-up-and-interview-prep/4-trees/5-misc"
     ]
 }
