@@ -51,3 +51,22 @@ class Solution {
 
 
 // Approach 2: O(2N) time, O(1) space
+
+class Solution {
+    public void flatten(TreeNode root) {
+        TreeNode node = root;
+        while(node != null) {
+            if(node.left != null) {
+                TreeNode temp = node.left;
+                while(temp.right != null) {
+                    temp = temp.right;
+                }
+                
+                temp.right = node.right;
+                node.right = node.left;
+                node.left = null;
+            }
+            node = node.right;
+        }
+    }
+}
