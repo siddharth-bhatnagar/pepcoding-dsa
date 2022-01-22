@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-class ChefAndSecretPassword {
+public class ChefAndSecretPassword {
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
         int t = scn.nextInt();
@@ -29,24 +29,19 @@ class ChefAndSecretPassword {
         return s.substring(0, len);
     }
 
-    private static int[] zFunc(String str, int k) {
-        int n = str.length();
+    private static int[] zFunc(String s, int n) {
         int[] z = new int[n];
-
         int L = 0, R = 0;
 
         for (int i = 1; i < n; i++) {
-            // Giving headstart
             if (i <= R) {
                 z[i] = Math.min(z[i - L], R - i + 1);
             }
 
-            // Updating/Trying to extend substring and prefix
-            while (i + z[i] < n && str.charAt(i + z[i]) == str.charAt(z[i])) {
+            while (i + z[i] < n && s.charAt(i + z[i]) == s.charAt(z[i])) {
                 z[i]++;
             }
 
-            // Updating bubble boundary
             if (i + z[i] - 1 > R) {
                 L = i;
                 R = i + z[i] - 1;
