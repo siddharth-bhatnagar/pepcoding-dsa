@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.*;
 
 public class ChefAndSecretPassword {
@@ -17,7 +16,7 @@ public class ChefAndSecretPassword {
     private static String guessPassword(String s, int n) {
         if (n == 1)
             return s;
-        int[] z = zFunc(s, n);
+        int[] z = zFunc(s);
         int len = s.length();
 
         for (int val : z) {
@@ -29,19 +28,24 @@ public class ChefAndSecretPassword {
         return s.substring(0, len);
     }
 
-    private static int[] zFunc(String s, int n) {
+    private static int[] zFunc(String str) {
+        int n = str.length();
         int[] z = new int[n];
+
         int L = 0, R = 0;
 
         for (int i = 1; i < n; i++) {
+            // Giving headstart
             if (i <= R) {
                 z[i] = Math.min(z[i - L], R - i + 1);
             }
 
-            while (i + z[i] < n && s.charAt(i + z[i]) == s.charAt(z[i])) {
+            // Updating/Trying to extend substring and prefix
+            while (i + z[i] < n && str.charAt(i + z[i]) == str.charAt(z[i])) {
                 z[i]++;
             }
 
+            // Updating bubble boundary
             if (i + z[i] - 1 > R) {
                 L = i;
                 R = i + z[i] - 1;

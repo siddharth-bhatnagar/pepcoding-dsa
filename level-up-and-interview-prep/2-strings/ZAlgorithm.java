@@ -1,35 +1,27 @@
-import java.io.*;
-import java.util.*;
+// Leetcode 28
+// Implement Str
 
-class ChefAndSecretPassword {
-    public static void main(String[] args) {
-        Scanner scn = new Scanner(System.in);
-        int t = scn.nextInt();
-        while (t-- > 0) {
-            int n = scn.nextInt();
-            String s = scn.next();
-            String pwd = guessPassword(s, n);
-            System.out.println(pwd);
-        }
-        scn.close();
-    }
+class Solution {
+    public int strStr(String haystack, String needle) {
+        if (needle.length() == 0)
+            return 0;
+        if (haystack.length() == 0 || haystack.length() < needle.length())
+            return -1;
 
-    private static String guessPassword(String s, int n) {
-        if (n == 1)
-            return s;
-        int[] z = zFunc(s, n);
-        int len = s.length();
+        String str = needle + "$" + haystack;
+        int[] z = Zfunc(str);
+        int n = needle.length();
 
-        for (int val : z) {
-            if (val > 0 && val < len) {
-                len = val;
+        for (int i = n + 1; i < z.length; i++) {
+            if (z[i] == n) {
+                return i - n - 1;
             }
         }
 
-        return s.substring(0, len);
+        return -1;
     }
 
-    private static int[] zFunc(String str, int k) {
+    private int[] Zfunc(String str) {
         int n = str.length();
         int[] z = new int[n];
 
@@ -55,4 +47,4 @@ class ChefAndSecretPassword {
 
         return z;
     }
-}
+} 
