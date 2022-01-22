@@ -7,14 +7,15 @@ class Solution {
         if(arr.length == 0) return "";
         int n = arr.length;
         String str = arr[0];
+        int len = str.length();
         for(int i=1;i<n;i++) {
             String s = arr[i];
-            int m = s.length(), k = str.length();
+            int m = s.length();
             int j = 0;
-            while(j < m && j < k && str.charAt(j) == s.charAt(j)) j++;
-            str = str.substring(0, j);
+            while(j < m && j < len && str.charAt(j) == s.charAt(j)) j++;
+            len = Math.min(len, j);
         }
         
-        return str;
+        return str.substring(0, len);
     }
 }
