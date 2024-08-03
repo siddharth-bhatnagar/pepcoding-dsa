@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Sort01 {
-
+        // 010101111000
     public static void sort01(int[] arr) {
         //write your code here
         int i = 0, j = 0;
