@@ -1,0 +1,56 @@
+-- Query 1: Getting employee details including department name and manager name
+SELECT 
+    e.id,
+    e.name,
+    d.name AS dept_name,
+    m.name AS manager_name,
+    e.salary
+FROM 
+    Employee e
+LEFT JOIN 
+    Department d ON e.dept_id = d.id
+LEFT JOIN 
+    Employee m ON e.manager_id = m.id;
+
+-- Query 2: List out the details of person having Nth highest salary
+-- Without using LIMIT and OFFSET
+-- Replace N with the desired number (e.g., 3 for 3rd highest salary)
+SELECT 
+    e.id,
+    e.name,
+    d.name AS dept_name,
+    m.name AS manager_name,
+    e.salary
+FROM 
+    Employee e
+LEFT JOIN 
+    Department d ON e.dept_id = d.id
+LEFT JOIN 
+    Employee m ON e.manager_id = m.id
+WHERE 
+    N-1 = (
+        SELECT COUNT(DISTINCT e2.salary)
+        FROM Employee e2
+        WHERE e2.salary > e.salary
+    );
+
+
+SELECT 
+    e.id,
+    e.name,
+    d.name AS dept_name,
+    m.name AS manager_name,
+    e.salary
+FROM 
+    Employee e
+LEFT JOIN 
+    Department d ON e.dept_id = d.id
+LEFT JOIN 
+    Employee m ON e.manager_id = m.id
+WHERE 
+    e.salary = (
+        SELECT DISTINCT salary
+        FROM Employee
+        ORDER BY salary DESC
+        LIMIT 1 OFFSET N-1
+    );
