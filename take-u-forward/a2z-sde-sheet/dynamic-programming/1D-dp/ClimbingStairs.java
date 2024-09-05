@@ -47,7 +47,7 @@ public class ClimbingStairs {
             r = dp[n-2];
         } else  r = climbStairs(n - 2);
     
-        return l+r;
+        return dp[n] = l+r;
     }
 
 
